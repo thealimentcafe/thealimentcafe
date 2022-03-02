@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div>
       <Menu />
-      Home
+      Home text
     </div>
   )
 }
