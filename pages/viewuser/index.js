@@ -1,6 +1,6 @@
 import Menu from '../component/menu'
 import styles from './viewuser.module.css';
-import { Power, User, Briefcase, ArrowLeft, Phone, Mail, Navigation, Disc, Lock } from 'react-feather';
+import { Power, User, Briefcase, ArrowLeft, Phone, Mail, Navigation, Disc, Lock, Bookmark } from 'react-feather';
 import { Link, Button } from '@material-ui/core';
 
 export default function ViewUsers() {
@@ -24,6 +24,11 @@ export default function ViewUsers() {
               <Link href="/viewuser" className={`${styles.UserList}`}>
                 <User/>
                 <p className={`${styles.UserListTitle}`}>Subhankar Mondal</p>
+              </Link>
+
+              <Link href="/viewuser" className={`${styles.UserList}`}>
+                <Bookmark/>
+                <p className={`${styles.UserListTitle}`}>TAC001</p>
               </Link>
 
               <Link href="/viewuser" className={`${styles.UserList}`}>

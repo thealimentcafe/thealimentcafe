@@ -1,6 +1,6 @@
 import Menu from '../component/menu'
 import styles from './user.module.css';
-import { Power, User, Edit, ArrowLeft } from 'react-feather';
+import { Power, Edit, ArrowLeft } from 'react-feather';
 import { Link, Button } from '@material-ui/core';
 
 export default function Users() {
@@ -21,45 +21,21 @@ export default function Users() {
                 <Link href="/adduser" className={`${styles.HomeMenuBU}`}>CREATE USER</Link>
               </div>
 
-              <Link href="/viewuser" className={`${styles.UserList} ${styles.Archive}`}>
-                <User/>
-                <p className={`${styles.UserListTitle}`}>Subhankar Mondal</p>
+              <Link href="/viewuser" className={`${styles.UserList}`}>
+                <div className={`${styles.UserListDe}`}>
+                  <p className={`${styles.UserListTitle}`}>Subhankar Mondal</p>
+                  <p className={`${styles.UserListID}`}>TAC001 <span className={`${styles.Active}`}>Active</span></p>
+                  <p className={`${styles.UserListDesig}`}>Store Manager</p>
+                </div>
                 <Button className={`${styles.UserEditBU}`}><Edit/></Button>
               </Link>
 
               <Link href="/viewuser" className={`${styles.UserList}`}>
-                <User/>
-                <p className={`${styles.UserListTitle}`}>Samsujj Jaman</p>
-                <Button className={`${styles.UserEditBU}`}><Edit/></Button>
-              </Link>
-
-              <Link href="/viewuser" className={`${styles.UserList} ${styles.Archive}`}>
-                <User/>
-                <p className={`${styles.UserListTitle}`}>Subhankar Sasmal</p>
-                <Button className={`${styles.UserEditBU}`}><Edit/></Button>
-              </Link>
-
-              <Link href="/viewuser" className={`${styles.UserList}`}>
-                <User/>
-                <p className={`${styles.UserListTitle}`}>Rahul Dutta</p>
-                <Button className={`${styles.UserEditBU}`}><Edit/></Button>
-              </Link>
-
-              <Link href="/viewuser" className={`${styles.UserList} ${styles.Archive}`}>
-                <User/>
-                <p className={`${styles.UserListTitle}`}>Joydeep Pal</p>
-                <Button className={`${styles.UserEditBU}`}><Edit/></Button>
-              </Link>
-
-              <Link href="/viewuser" className={`${styles.UserList}`}>
-                <User/>
-                <p className={`${styles.UserListTitle}`}>Snehasish Ghosh</p>
-                <Button className={`${styles.UserEditBU}`}><Edit/></Button>
-              </Link>
-
-              <Link href="/viewuser" className={`${styles.UserList} ${styles.Archive}`}>
-                <User/>
-                <p className={`${styles.UserListTitle}`}>Sribas Das</p>
+                <div className={`${styles.UserListDe}`}>
+                  <p className={`${styles.UserListTitle}`}>Subhankar Mondal</p>
+                  <p className={`${styles.UserListID}`}>TAC001 <span className={`${styles.Archive}`}>Archive</span></p>
+                  <p className={`${styles.UserListDesig}`}>Store Manager</p>
+                </div>
                 <Button className={`${styles.UserEditBU}`}><Edit/></Button>
               </Link>
 

@@ -49,6 +49,13 @@ export default function AddUser() {
 
             <div className={`${styles.LoginInput}`}>
               <div className={`${styles.InputArea}`}>
+                <TextField id="outlined-basic" label="Employee ID" variant="outlined" size="small" className='LoginInput' />
+                <p className="LoginErrorText">Employee ID Can't Be Blank</p>
+              </div>
+            </div>
+
+            <div className={`${styles.LoginInput}`}>
+              <div className={`${styles.InputArea}`}>
                 <TextField id="outlined-basic" label="Post" variant="outlined" size="small" className='LoginInput' />
                 <p className="LoginErrorText">Post Can't Be Blank</p>
               </div>

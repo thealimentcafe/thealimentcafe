@@ -1,0 +1,118 @@
+.HomeButtonArea {
+    min-width: 300px;
+    max-width: 380px;
+    margin: auto;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -10px;
+}
+
+.BodyHeadArea {
+    display: flex;
+    width: 100%;
+    margin: 0 0 25px 0;
+}
+
+.BackBU {
+	width: auto;
+    background-color: transparent !important;
+    font-size: 16px !important;
+    color: #bcbcbc !important;
+    font-weight: 600 !important;
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 0px 0px 05px 0px !important;
+    transition: all .3s ease-in-out !important;
+    margin: 0px 10px 0px 0 !important;
+    font-family: 'Montserrat', sans-serif !important;
+    text-align: center !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.BackBU:hover {
+	background: #fff;
+    text-decoration: none !important;
+}
+
+.ViewUserTitle {
+    margin: 0 0 0px 0;
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+}
+
+.LoginInput {
+	width: 100%;
+	padding: 15px 0;
+    display: flex;
+}
+
+.InputArea {
+	width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.InputAreaUnit {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    max-width: 100px;
+    margin-left: 10px;
+}
+
+.AddEditBU {
+	width: 120px;
+    background-color: #e1e1e1 !important;
+    font-size: 13px !important;
+    color: #1e1e2d !important;
+    font-weight: 600 !important;
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 5px 10px 5px 10px !important;
+    transition: all .3s ease-in-out !important;
+    margin: 0px 0 0px 10px !important;
+    font-family: 'Montserrat', sans-serif !important;
+    text-align: center !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.AddEditBU:hover {
+	background: #fff;
+    text-decoration: none !important;
+}
+
+.AddEditBU svg {
+    width: 16px;
+    margin-right: 5px;
+}
+
+.LoginBU {
+	width: 60px;
+    height: 60px;
+	background-color: #e1e1e1  !important;
+	font-size: 16px !important;
+    color: #1e1e2d !important;
+    font-weight: 600 !important;
+    border: none !important;
+    border-radius: 50% !important;
+    padding: 8px 10px 8px 10px !important;
+    transition: all .3s ease-in-out !important;
+    margin: 10px auto 0 auto !important;
+    font-family: 'Montserrat', sans-serif !important;
+    text-align: center !important;
+}
+
+.LoginBU:hover {
+	background: #fff;
+    text-decoration: none !important;
+}

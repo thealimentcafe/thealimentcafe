@@ -39,7 +39,7 @@
 
 .HomeMenuBU {
 	width: 100%;
-	background-color: #FCB125  !important;
+	background-color: #e1e1e1  !important;
 	font-size: 16px !important;
     color: #1e1e2d !important;
     font-weight: 600 !important;
@@ -95,6 +95,40 @@
     width: 100%;
 }
 
+.UserListID {
+    font-size: 13px;
+    font-weight: 500;
+    color: #b5b4b4;
+    margin: 5px 0 5px 0;
+    width: 100%;
+}
+
+.UserListID span {
+    font-size: 10px;
+    font-weight: 500;
+    margin: 0 0 0 10px;
+    padding: 2px 4px;
+    border-radius: 5px;
+}
+
+.UserListID span.Archive {
+    color: #fff;
+    background: #ff0000;
+}
+
+.UserListID span.Active {
+    color: #fff;
+    background: #099a0b;
+}
+
+.UserListDesig {
+    font-size: 12px;
+    font-weight: 400;
+    color: #b5b4b4;
+    margin: 0 0 0 0;
+    width: 100%;
+}
+
 .UserList .UserEditBU {
     padding: 0 0 0 15px;
 }
@@ -103,5 +137,9 @@
     min-width: 18px;
     width: 18px;
     margin-right: 0px;
-    color: #FCB125;
+    color: #fcb125;
+}
+
+.UserListDe {
+    width: 100%;
 }

@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
-html,
+html {
+  margin: 0;
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+}
+
 body {
   margin: 0;
 	padding: 0;
 	font-family: 'Montserrat', sans-serif;
+  width: 100%;
+	height: 100%;
+	background: #151521;
 }
 
 a {
@@ -21,10 +29,14 @@ a {
   width: 100%;
 }
 
+.LoginInput {
+  width: 100%;
+}
+
 .LoginInput .MuiInputBase-root,
 .LoginInput .MuiFormLabel-root {
   color: #fff;
-  font-size: 15px;
+  font-size: 14px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
 }
@@ -34,7 +46,7 @@ a {
 }
 
 .LoginInput .MuiFormLabel-root.Mui-focused {
-  color: #FCB125;
+  color: #e1e1e1;
 }
 
 .Error .LoginInput .MuiFormLabel-root.Mui-focused {
@@ -43,7 +55,7 @@ a {
 
 .LoginInput .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
 .LoginInput .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: #FCB125;
+  border-color: #e1e1e1;
   border-width: 1px;
 }
 
@@ -76,7 +88,7 @@ a {
 
 .LoginBU {
 	width: 100%;
-	background-color: #FCB125  !important;
+	background-color: #e1e1e1  !important;
 	font-size: 16px !important;
   color: #1e1e2d !important;
   font-weight: 600 !important;
@@ -112,6 +124,8 @@ a {
   position: fixed;
   width: 100%;
   box-shadow: 0px 2px 20px 0 #0f0f17;
+  top: 0;
+  z-index: 99;
 }
 
 .HeaderLogo {
@@ -159,7 +173,7 @@ a {
 }
 
 .ToggleSwitch .MuiSwitch-colorPrimary.Mui-checked {
-  color: #fcb125 !important;
+  color: #e1e1e1 !important;
 }
 
 .ToggleSwitch .MuiSwitch-track {
@@ -167,7 +181,7 @@ a {
 }
 
 .ToggleSwitch .MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track {
-  background-color: #fcb125 !important;
+  background-color: #e1e1e1 !important;
 }
 
 .MuiSnackbarContent-root {
@@ -179,4 +193,62 @@ a {
   letter-spacing: 0 !important;
   background-color: rgb(252 177 37) !important;
   justify-content: center;
+}
+
+.MuiSelect-icon,
+.MuiSvgIcon-root {
+  color: rgb(255 255 255 / 54%) !important;
+}
+
+.CheckBoxWithoutLabel .MuiFormControlLabel-root {
+  margin-right: 2px !important;
+  margin-left: 0px;
+}
+
+.CheckBoxWithoutLabel .MuiFormControlLabel-root > span {
+  padding: 0 !important;
+}
+
+.CheckBoxWithoutLabel .MuiSelect-icon, 
+.CheckBoxWithoutLabel .MuiSvgIcon-root {
+  color: rgb(255 255 255) !important;
+  width: 1em !important;
+  height: 1em !important;
+  font-size: .8em !important;
+}
+
+.CheckBoxWithoutLabel .MuiFormControlLabel-root .MuiFormControlLabel-label {
+  color: #e1e1e1 !important;
+  font-size: 13px !important;
+  font-weight: 300 !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.CheckBox .MuiSelect-icon,
+.CheckBox .MuiSvgIcon-root {
+  color: #fff !important;
+}
+
+.CheckBox.MuiFormControlLabel-root .MuiFormControlLabel-label,
+.CheckboxGroup .MuiFormControlLabel-root .MuiFormControlLabel-label {
+  color: #e1e1e1 !important;
+}
+
+.MuiFormGroup-root.CheckboxGroup {
+  display: flex !important;
+  flex-wrap: nowrap !;
+  flex-direction: unset !important;
+}
+
+.CheckboxGroup .MuiSelect-icon, 
+.CheckboxGroup .MuiSvgIcon-root {
+  color: rgb(255 255 255) !important;
+}
+
+.CheckboxGroup .MuiFormControlLabel-root {
+  margin-right: 30px !important;
+}
+
+.CheckboxGroup .MuiFormControlLabel-root:last-child {
+  margin-right: 0px !important;
 }

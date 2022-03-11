@@ -26,7 +26,7 @@ export default function Home() {
               <Link href="/stock" className={`${styles.HomeMenuBU}`}>STOCK</Link>
               <Link href="/menu" className={`${styles.HomeMenuBU}`}>MENU</Link>
               <Link href="/stockupdate" className={`${styles.HomeMenuBU}`}>STOCK UPDATE</Link>
-              <Link href="/order" className={`${styles.HomeMenuBU}`}>ORDARING</Link>
+              <Link href="/order" className={`${styles.HomeMenuBU}`}>TAKE ORDER</Link>
               <Link href="/liveorder" className={`${styles.HomeMenuBULive}`}>GO LIVE</Link>
 
             </div>
