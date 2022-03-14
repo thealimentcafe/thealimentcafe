@@ -29,6 +29,45 @@ export default function LiveOrder() {
               <p className={`${styles.ViewUserTitle}`}>Live Order</p>
             </div>
 
+            <div className={`${styles.StockUpdateRow}`}>
+              <div className={`${styles.Stock}`}>
+                <p className={`${styles.StockName}`}>Chicken Tikka Kebab</p>
+                <p className={`${styles.StockUnit}`}>40</p>
+              </div>
+              <div className={`${styles.Stock}`}>
+                <p className={`${styles.StockName}`}>Chicken Reshmi Kebab</p>
+                <p className={`${styles.StockUnit}`}>50</p>
+              </div>
+              <div className={`${styles.Stock}`}>
+                <p className={`${styles.StockName}`}>Chicken Hariyali Kebab</p>
+                <p className={`${styles.StockUnit}`}>15</p>
+              </div>
+              <div className={`${styles.Stock}`}>
+                <p className={`${styles.StockName}`}>Peshwari Tangdi</p>
+                <p className={`${styles.StockUnit}`}>27</p>
+              </div>
+              <div className={`${styles.Stock}`}>
+                <p className={`${styles.StockName}`}>Chicken Tandoori</p>
+                <p className={`${styles.StockUnit}`}>20</p>
+              </div>
+              <div className={`${styles.Stock}`}>
+                <p className={`${styles.StockName}`}>Chicken Afgani Kebab</p>
+                <p className={`${styles.StockUnit}`}>60</p>
+              </div>
+              <div className={`${styles.Stock}`}>
+                <p className={`${styles.StockName}`}>Fish Tikka</p>
+                <p className={`${styles.StockUnit}`}>55</p>
+              </div>
+              <div className={`${styles.Stock}`}>
+                <p className={`${styles.StockName}`}>Prawn Tandoori</p>
+                <p className={`${styles.StockUnit}`}>80</p>
+              </div>
+              <div className={`${styles.Stock}`}>
+                <p className={`${styles.StockName}`}>Lemon Pepper Grilled Fish</p>
+                <p className={`${styles.StockUnit}`}>10</p>
+              </div>
+            </div>
+
             <div className={`${styles.TableContainer} CheckBoxWithoutLabel`}>
               <table>
                 <tr>
