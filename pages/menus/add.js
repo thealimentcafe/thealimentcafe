@@ -8,8 +8,9 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Select from 'react-select';
 import Header from "../component/header";
+import withAuth from "../component/withAuth";
 
-export default function CeateMenu() {
+function CeateMenu() {
   const router = useRouter();
   const { register, handleSubmit, watch, formState: { errors },control } = useForm({
     defaultValues: {
@@ -130,3 +131,6 @@ export default function CeateMenu() {
     </div>
   )
 }
+
+
+export default withAuth(CeateMenu);

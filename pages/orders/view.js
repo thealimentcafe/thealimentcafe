@@ -4,9 +4,10 @@ import { Link } from '@material-ui/core';
 import { Power, ArrowLeft } from 'react-feather';
 import axios from 'axios';
 import Header from "../component/header";
+import withAuth from "../component/withAuth";
 
 
-export default function ViewOrders() {
+function ViewOrders() {
   const [orderList,setOrderList] = useState({'data':[],'loading':false});
 
   useEffect(() => {
@@ -104,3 +105,5 @@ export default function ViewOrders() {
     </div>
   )
 }
+
+export default withAuth(ViewOrders);

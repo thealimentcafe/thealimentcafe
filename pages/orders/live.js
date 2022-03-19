@@ -4,9 +4,10 @@ import { Link, FormControlLabel, Checkbox } from '@material-ui/core';
 import { Power, ArrowLeft, Plus } from 'react-feather';
 import axios from 'axios';
 import Header from "../component/header";
+import withAuth from "../component/withAuth";
 
 
-export default function LiveOrder() {
+function LiveOrder() {
   const [itemList,setItemList] = useState({'data':[],'loading':false});
   const [orderList,setOrderList] = useState({'data':[],'loading':false});
 
@@ -202,3 +203,5 @@ export default function LiveOrder() {
     </div>
   )
 }
+
+export default withAuth(LiveOrder);

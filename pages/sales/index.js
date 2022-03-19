@@ -5,6 +5,7 @@ import { Link, InputLabel, MenuItem, FormControl, Select, TextField } from '@mat
 import { Power, ArrowLeft, Plus } from 'react-feather';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Header from "../component/header";
+import withAuth from "../component/withAuth";
 
 
 const menuList = [
@@ -15,7 +16,7 @@ const menuList = [
   { title: 'Peshwari Tangdi' }
 ];
 
-export default function Sales() {
+function Sales() {
 
   const [filteBy, filterBy] = React.useState('');
   const [select, setFilter] = React.useState('');
@@ -160,3 +161,5 @@ export default function Sales() {
     </div>
   )
 }
+
+export default withAuth(Sales);

@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Select from 'react-select';
 import Header from "../component/header";
+import withAuth from "../component/withAuth";
 
 
 const postList = [
@@ -15,7 +16,7 @@ const postList = [
   {label:'Cook',value:'Cook'},
 ]
 
-export default function AddUser() {
+function AddUser() {
   const router = useRouter();
   const { register, handleSubmit, watch, formState: { errors },control } = useForm();
   
@@ -162,3 +163,5 @@ export default function AddUser() {
     
   )
 }
+
+export default withAuth(AddUser);

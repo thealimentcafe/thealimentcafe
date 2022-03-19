@@ -7,9 +7,10 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useForm,Controller,useFieldArray } from "react-hook-form";
 import Header from "../component/header";
+import withAuth from "../component/withAuth";
 
 
-export default function AddOrder() {
+function AddOrder() {
   const router = useRouter();
   const { register, handleSubmit, watch, formState: { errors },control, setValue, getValues } = useForm({
     defaultValues: {
@@ -253,3 +254,5 @@ export default function AddOrder() {
     </div>
   )
 }
+
+export default withAuth(AddOrder);

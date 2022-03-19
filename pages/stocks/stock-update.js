@@ -8,11 +8,12 @@ import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { useRouter } from 'next/router';
 import Select from 'react-select';
 import Header from "../component/header";
+import withAuth from "../component/withAuth";
 
 
 
 
-export default function StockUpdate() {
+function StockUpdate() {
   const router = useRouter();
   const { register, handleSubmit, watch, formState: { errors },control,setValue } = useForm({
     defaultValues: {
@@ -124,3 +125,5 @@ export default function StockUpdate() {
     </div>
   )
 }
+
+export default withAuth(StockUpdate);

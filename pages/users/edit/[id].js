@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Select from 'react-select';
 import Header from "../../component/header";
+import withAuth from "../../component/withAuth";
 
 const postList = [
   {label:'Admin',value:'Admin'},
@@ -14,7 +15,7 @@ const postList = [
   {label:'Cook',value:'Cook'},
 ]
 
-export default function EditUser() {
+function EditUser() {
   const router = useRouter();
   const { register, handleSubmit, watch, formState: { errors },setValue,control } = useForm();
   const [userCall,setUserCall] = useState(false);
@@ -199,3 +200,7 @@ export default function EditUser() {
     
   )
 }
+
+export default withAuth(EditUser);
+
+

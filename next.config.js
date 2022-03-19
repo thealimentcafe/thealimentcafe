@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    apiUrl: 'http://localhost:8000/api/',
+    apiUrl: 'http://thealiment.cafe/backendapi/api/',
   },
 }
 

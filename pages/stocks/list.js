@@ -5,9 +5,9 @@ import { Power, ArrowLeft, Plus } from 'react-feather';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Header from "../component/header";
+import withAuth from "../component/withAuth";
 
-
-export default function Stock() {
+function Stock() {
   const router = useRouter();
   const [itemList,setItemList] = useState({'data':[],'loading':false});
 
@@ -89,3 +89,5 @@ export default function Stock() {
     </div>
   )
 }
+
+export default withAuth(Stock);

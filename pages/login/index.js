@@ -12,7 +12,7 @@ export default function Login() {
   const onSubmit = data => {
     axios.post(process.env.apiUrl+'v1/login',data)
     .then(res => {
-      localStorage.setItem('userDet', res.data.data);
+      localStorage.setItem('userDet', JSON.stringify(res.data.data));
       router.push('/home');
     }).catch(err =>{
       console.log(err.response.data);

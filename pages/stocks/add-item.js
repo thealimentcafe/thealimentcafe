@@ -5,10 +5,10 @@ import { Link, TextField, Button, FormControlLabel, Switch, Snackbar } from '@ma
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Header from "../component/header";
+import withAuth from "../component/withAuth";
 
 
-
-export default function AddItem() {
+function AddItem() {
   const router = useRouter();
   const [itemList,setItemList] = useState({'data':[],'loading':false});
   const [addData,setAddData] = useState('');
@@ -173,3 +173,5 @@ export default function AddItem() {
     </div>
   )
 }
+
+export default withAuth(AddItem);

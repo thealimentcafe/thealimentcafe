@@ -5,9 +5,10 @@ import { Link, Button } from '@material-ui/core';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Header from "../component/header";
+import withAuth from "../component/withAuth";
 
 
-export default function Users() {
+function Users() {
   const router = useRouter();
   const [userList,setUserList] = useState({'data':[],'loading':false});
 
@@ -72,3 +73,5 @@ export default function Users() {
     </div>
   )
 }
+
+export default withAuth(Users);

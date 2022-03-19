@@ -4,8 +4,9 @@ import { Link } from '@material-ui/core';
 import { Power, ArrowLeft, FilePlus } from 'react-feather';
 import axios from 'axios';
 import Header from "../component/header";
+import withAuth from "../component/withAuth";
 
-export default function MenuList() {
+function MenuList() {
   const [menuList,setMenuList] = useState({'data':[],'loading':false});
   useEffect(() => {
     
@@ -93,3 +94,4 @@ export default function MenuList() {
     </div>
   )
 }
+export default withAuth(MenuList);

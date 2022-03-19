@@ -4,9 +4,10 @@ import { Link, FormControlLabel, Checkbox } from '@material-ui/core';
 import { Power, ArrowLeft, Plus } from 'react-feather';
 import axios from 'axios';
 import Header from "../component/header";
+import withAuth from "../component/withAuth";
 
 
-export default function Order() {
+function Order() {
   const [itemList,setItemList] = useState({'data':[],'loading':false});
   const [orderList,setOrderList] = useState({'data':[],'loading':false});
 
@@ -317,3 +318,5 @@ export default function Order() {
     </div>
   )
 }
+
+export default withAuth(Order);

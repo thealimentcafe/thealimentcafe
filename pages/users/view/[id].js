@@ -5,9 +5,10 @@ import { Link, Button } from '@material-ui/core';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Header from "../../component/header";
+import withAuth from "../../component/withAuth";
 
 
-export default function ViewUsers() {
+function ViewUsers() {
   const router = useRouter();
   const [userCall,setUserCall] = useState(false);
   const [userDet,setUserDet] = useState(null);
@@ -95,3 +96,5 @@ export default function ViewUsers() {
     </div>
   )
 }
+
+export default withAuth(ViewUsers);
