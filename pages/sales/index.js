@@ -4,6 +4,8 @@ import styles from './sales.module.css';
 import { Link, InputLabel, MenuItem, FormControl, Select, TextField } from '@material-ui/core';
 import { Power, ArrowLeft, Plus } from 'react-feather';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Header from "../component/header";
+
 
 const menuList = [
   { title: 'Reshmi Kebab' },
@@ -28,10 +30,7 @@ export default function Sales() {
   return (
     <div>
 
-        <div className="Header">
-          <img src="/img/logo.svg" className="HeaderLogo" />
-          <Link href="/home" className="LogoutBU"><Power/> Logout</Link>
-        </div>
+        <Header />
 
         <div className="Body">
           <div className="Container">

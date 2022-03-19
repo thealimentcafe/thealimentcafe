@@ -13,8 +13,8 @@ export default function Home() {
     }
   });
   return (
-    <div className={styles.container}>
-      <img src="/loader.gif" />
+    <div className={`${styles.LoginBody}`}>
+      <img src="/img/login-bg.png" className={`${styles.LoginBG}`} />
     </div>
   )
 }

@@ -1,9 +1,24 @@
-import Menu from '../component/menu'
 import styles from './login.module.css';
 import { Camera } from 'react-feather';
 import { TextField, Button } from '@material-ui/core';
+import { useForm } from "react-hook-form";
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 export default function Login() {
+  const router = useRouter();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+  const onSubmit = data => {
+    axios.post(process.env.apiUrl+'v1/login',data)
+    .then(res => {
+      localStorage.setItem('userDet', res.data.data);
+      router.push('/home');
+    }).catch(err =>{
+      console.log(err.response.data);
+    });
+  };
+
   return (
     <div className={`${styles.LoginBody}`}>
       <img src="/img/login-bg.png" className={`${styles.LoginBG}`} />
@@ -14,25 +29,29 @@ export default function Login() {
           <p className={`${styles.Title}`}>LogIn</p>
           <p className={`${styles.SubTitle}`}>Please sign in to continue</p>
 
-          <div className={`${styles.LoginInput} Error`}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+
+          <div className={(errors.email)?`${styles.LoginInput} Error`:`${styles.LoginInput}`}>
             <div className={`${styles.InputArea}`}>
-              <TextField id="outlined-basic" label="User Name" variant="outlined" size="small" className='LoginInput' />
-              <p className="LoginErrorText">Invalid User Name</p>
+              <TextField type="email" id="outlined-basic5" label="User Email" variant="outlined" size="small" className='LoginInput'  {...register("email", { required: true })} />
+              {errors.email && <p className="LoginErrorText">Email Can't Be Blank</p>}
+            </div>
+          </div>
+
+          <div className={(errors.password)?`${styles.LoginInput} Error`:`${styles.LoginInput}`}>
+            <div className={`${styles.InputArea}`}>
+              <TextField type="password" id="outlined-basic" label="Password" variant="outlined" size="small" className='LoginInput' {...register("password", { required: true })} />
+              {errors.password && <p className="LoginErrorText">Password Can't Be Blank</p>}
             </div>
           </div>
 
           <div className={`${styles.LoginInput}`}>
             <div className={`${styles.InputArea}`}>
-              <TextField type="password" id="outlined-basic" label="Password" variant="outlined" size="small" className='LoginInput' />
-              <p className="LoginErrorText">Invalid Password</p>
+              <Button type="submit" className="LoginBU">Go</Button>
             </div>
           </div>
 
-          <div className={`${styles.LoginInput}`}>
-            <div className={`${styles.InputArea}`}>
-              <Button className="LoginBU">Go</Button>
-            </div>
-          </div>
+          </form>
 
         </div>
       </div>
