@@ -84,7 +84,7 @@ function CeateMenu() {
               return (<div key={index} className={`${styles.LoginInput}`}>
               <div className={`${styles.InputArea}`}>
                 <Controller
-                render={({ field }) => <Select {...field} id="outlined-basic" label="Unit" variant="outlined" size="small" className='LoginInput' options={itemList.data}
+                render={({ field }) => <Select {...field} id="outlined-basic" label="Unit" variant="outlined" size="small" className='LoginInput SelectForm' options={itemList.data}
                 value={itemList.data.find(c => c.value === field.value)} onChange={val => field.onChange(val.value)} />  } name={`menu_item.${index}.item`} control={control}
               />    
               </div>

@@ -252,3 +252,39 @@ a {
 .CheckboxGroup .MuiFormControlLabel-root:last-child {
   margin-right: 0px !important;
 }
+
+form {
+  width: 100%;
+}
+
+.LoginInput.SelectForm {
+  position: relative;
+  z-index: 2;
+}
+
+.LoginInput.SelectForm > div {
+  background-color: transparent;
+  border-color: hsl(240deg 3% 55%);
+}
+
+.LoginInput.SelectForm > div #react-select-3-placeholder,
+.LoginInput.SelectForm > div > div > div {
+  color: #fff;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+.LoginInput.SelectForm #react-select-3-listbox {
+  background: #fff;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.LoginInput.SelectForm #react-select-3-listbox > div > div {
+  color: #000 !important;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}

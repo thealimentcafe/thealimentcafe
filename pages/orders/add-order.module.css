@@ -123,3 +123,8 @@
     color: #fff;
     margin: 0 0 0 0;
 }
+
+.CheckboxSec {
+    display: flex;
+    min-width: 175px;
+}
