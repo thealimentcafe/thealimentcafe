@@ -34,14 +34,14 @@ export default function Login() {
           <div className={(errors.email)?`${styles.LoginInput} Error`:`${styles.LoginInput}`}>
             <div className={`${styles.InputArea}`}>
               <TextField type="email" id="outlined-basic5" label="User Email" variant="outlined" size="small" className='LoginInput'  {...register("email", { required: true })} />
-              {errors.email && <p className="LoginErrorText">Email Can't Be Blank</p>}
+              {errors.email && <p className="LoginErrorText">Email Can&apos;t Be Blank</p>}
             </div>
           </div>
 
           <div className={(errors.password)?`${styles.LoginInput} Error`:`${styles.LoginInput}`}>
             <div className={`${styles.InputArea}`}>
               <TextField type="password" id="outlined-basic" label="Password" variant="outlined" size="small" className='LoginInput' {...register("password", { required: true })} />
-              {errors.password && <p className="LoginErrorText">Password Can't Be Blank</p>}
+              {errors.password && <p className="LoginErrorText">Password Can&apos;t Be Blank</p>}
             </div>
           </div>
 

@@ -69,14 +69,14 @@ function AddUser() {
             <div className={(errors.fullname)?`${styles.LoginInput} Error`:`${styles.LoginInput}`}>
               <div className={`${styles.InputArea}`}>
                 <TextField id="outlined-basic1" label="Name" variant="outlined" size="small" className='LoginInput' {...register("fullname", { required: true })} />
-                {errors.fullname && <p className="LoginErrorText">Name Can't Be Blank</p>}
+                {errors.fullname && <p className="LoginErrorText">Name Can&apos;t Be Blank</p>}
                 </div>
             </div>
 
             <div className={(errors.emplyee_id)?`${styles.LoginInput} Error`:`${styles.LoginInput}`}>
               <div className={`${styles.InputArea}`}>
                 <TextField id="outlined-basic2" label="Employee ID" variant="outlined" size="small" autoComplete='off' className='LoginInput'  {...register("emplyee_id", { required: true })} />
-                {errors.emplyee_id && <p className="LoginErrorText">Employee ID Can't Be Blank</p>}
+                {errors.emplyee_id && <p className="LoginErrorText">Employee ID Can&apos;t Be Blank</p>}
               </div>
             </div>
 
@@ -86,7 +86,7 @@ function AddUser() {
                 render={({ field }) => <Select {...field} id="outlined-basi99c" label="Post" variant="outlined" size="small" className='LoginInput' options={postList}
                 value={postList.find(c => c.value === field.value)} onChange={val => field.onChange(val.value)} />  } {...register("post", { required: true })} control={control}
               />
-              {errors.post && <p className="LoginErrorText">Post Can't Be Blank</p>}
+              {errors.post && <p className="LoginErrorText">Post Can&apos;t Be Blank</p>}
               </div>
 
               
@@ -95,21 +95,21 @@ function AddUser() {
             <div className={(errors.contact_no)?`${styles.LoginInput} Error`:`${styles.LoginInput}`}>
               <div className={`${styles.InputArea}`}>
                 <TextField type="tel" id="outlined-basic4" label="Contact No." variant="outlined" size="small" className='LoginInput'  {...register("contact_no", { required: true })} />
-                {errors.contact_no && <p className="LoginErrorText">Contact Number Can't Be Blank</p>}
+                {errors.contact_no && <p className="LoginErrorText">Contact Number Can&apos;t Be Blank</p>}
               </div>
             </div>
 
             <div className={(errors.email)?`${styles.LoginInput} Error`:`${styles.LoginInput}`}>
               <div className={`${styles.InputArea}`}>
                 <TextField type="email" id="outlined-basic5" label="Email" variant="outlined" size="small" className='LoginInput' {...register("email", { required: true })} />
-                {errors.email && <p className="LoginErrorText">Email Can't Be Blank</p>}
+                {errors.email && <p className="LoginErrorText">Email Can&apos;t Be Blank</p>}
               </div>
             </div>
 
             <div className={(errors.area)?`${styles.LoginInput} Error`:`${styles.LoginInput}`}>
               <div className={`${styles.InputArea}`}>
                 <TextField id="outlined-basic6" label="Area" variant="outlined" size="small" className='LoginInput' {...register("area", { required: true })} />
-                {errors.area && <p className="LoginErrorText">Area Can't Be Blank</p>}
+                {errors.area && <p className="LoginErrorText">Area Can&apos;t Be Blank</p>}
               </div>
             </div>
 
@@ -124,7 +124,7 @@ function AddUser() {
             <div className={(errors.password)?`${styles.LoginInput} Error`:`${styles.LoginInput}`}>
               <div className={`${styles.InputArea}`}>
                 <TextField type="password" id="outlined-basic8" label="Password" variant="outlined" size="small" className='LoginInput'  {...register("password", { required: true })} />
-                {errors.password && <p className="LoginErrorText">Password Can't Be Blank</p>}
+                {errors.password && <p className="LoginErrorText">Password Can&apos;t Be Blank</p>}
               </div>
             </div>
 

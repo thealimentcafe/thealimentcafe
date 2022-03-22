@@ -66,7 +66,7 @@ function Stock() {
 
                 {itemList.data.map((item,index)=>{
 
-                  return (<tr>
+                  return (<tr key={index}>
                     <td>
                       <p>{(index+1)}</p>
                     </td>
