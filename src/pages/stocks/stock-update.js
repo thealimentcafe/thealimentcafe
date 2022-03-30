@@ -15,11 +15,7 @@ import moment from 'moment';
 
 function StockUpdate() {
   const router = useHistory();
-  const { handleSubmit, control,setValue } = useForm({
-    defaultValues: {
-      menu_item: [{ item: '', unit: 0 }]
-    }
-  });
+  const { handleSubmit, control,setValue } = useForm();
   const [itemList,setItemList] = useState({'data':[],'loading':false});
   const { fields, append } = useFieldArray({ control, name: "menu_item" });
 

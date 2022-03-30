@@ -1,64 +1,64 @@
-import React, { useEffect,useState } from 'react';
+import React from 'react';
 import styles from './liveorder.module.css';
 import { ArrowLeft } from 'react-feather';
 import axios from 'axios';
 import Header from "../../components/header";
 import withAuth from "../../components/withAuth";
 import { Link } from "react-router-dom";
+import {  FormControlLabel, Checkbox } from '@material-ui/core';
 
 
-function LiveOrder() {
-  const [itemList,setItemList] = useState({'data':[],'loading':false});
-  const [orderList,setOrderList] = useState({'data':[],'loading':false});
+class LiveOrder extends React.Component {
 
-  useEffect(() => {
-    
-    function fetchItems(){
-      let ilist = itemList;
-      ilist = {...ilist,'loading':true};
-      setItemList(ilist);
-      axios.get(process.env.REACT_APP_APIURL+'v1/items')
-      .then(res => {
-        let ilist = {'data':res.data.data,'loading':true};
-        setItemList(ilist);
-      }).catch(err =>{
-        let ilist = itemList;
-        ilist = {...ilist,'loading':false};
-        setItemList(ilist);
-      });
+  state = {
+    itemList: [],
+    orderList:[]
+  }
+
+  componentDidMount() {
+    this.fetchItems();
+    this.fetchOrders();
+    this.interval1 = setInterval(() => this.fetchItems(), 5000);
+    this.interval2 = setInterval(() => this.fetchOrders(), 5000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval1);
+    clearInterval(this.interval2);
+  }
+
+  fetchItems(){
+    axios.get(process.env.REACT_APP_APIURL+'v1/items')
+    .then(res => {
+      this.setState({...this.state,itemList:res.data.data});
+    });
+  }
+
+  fetchOrders(){
+    axios.get(process.env.REACT_APP_APIURL+'v1/take-orders')
+    .then(res => {
+      this.setState({...this.state,orderList:res.data.data});
+    });
+  }
+
+  changeCookingStatus = (e,itemId)=>{
+    let status = 0;
+    if(e.target.checked){
+      status = 1;
     }
+    axios.put(process.env.REACT_APP_APIURL+'v1/orders/'+itemId,{status:status})
+    .then(res => {
+      console.log(res);
+      clearInterval(this.interval2);
+      this.fetchOrders();
+      this.interval2 = setInterval(() => this.fetchOrders(), 5000);
+    }).catch(err =>{
+      console.log(err);
+    });
+  }
 
-    if(!itemList.loading){
-      fetchItems();
-    }
-
-  });
-
-  useEffect(() => {
-    
-    function fetchOrders(){
-      let olist = orderList;
-      olist = {...olist,'loading':true};
-      setOrderList(olist);
-      axios.get(process.env.REACT_APP_APIURL+'v1/orders')
-      .then(res => {
-        let olist = {'data':res.data.data,'loading':true};
-        setOrderList(olist);
-      }).catch(err =>{
-        let olist = orderList;
-        olist = {...olist,'loading':false};
-        setOrderList(olist);
-      });
-    }
-
-    if(!orderList.loading){
-      fetchOrders();
-    }
-
-  });
-
-  return (
-    <div>
+  render() {
+    return(
+      <div>
 
         <Header />
 
@@ -71,7 +71,7 @@ function LiveOrder() {
             </div>
 
             <div className={`${styles.StockUpdateRow}`}>
-            {itemList.data.map((item,index)=>{
+            {this.state.itemList.map((item,index)=>{
                 return (<div key={index} className={`${styles.Stock}`}>
                 <p className={`${styles.StockName}`}>{item.item_name}</p>
                 <p className={`${styles.StockUnit}`}>{item.live_stock}</p>
@@ -88,8 +88,8 @@ function LiveOrder() {
                   <th>Qnt</th>
                   <th>Status</th>
                 </tr>
-                {orderList.data.map((item,index)=>{
-                  return (<tr key={index} className={(item.status === 2)?`${styles.Delivered}`:((item.status === 1)?`${styles.Cooking}`:`${styles.Ready}`)}>
+                {this.state.orderList.map((item,index)=>{
+                  return (<tr key={index} className={(parseInt(item.status) === 2)?`${styles.Delivered}`:((parseInt(item.status) === 1)?`${styles.Ready}`:`${styles.Cooking}`)}>
                   <td>
                     <p>{index+1}</p>
                   </td>
@@ -107,93 +107,38 @@ function LiveOrder() {
                   })}
                   </td>
                   <td>
-                  {item.status === 0 && <p>Ready</p>}
-                  {item.status === 1 && <p>Cooking</p>}
-                  {item.status === 2 && <p>Delivered</p>}
-                  </td>
-                </tr>)
-                })}
-                {/*<tr className={`${styles.Ready}`}>
-                  <td>
-                    <p>01</p>
-                  </td>
-                  <td>
-                    <p>Subhankar Mondal</p>
-                  </td>
-                  <td>
-                    <p>Reshmi Kebab</p>
-                  </td>
-                  <td>
-                    <p>2</p>
-                  </td>
-                  <td>
-                    <p>Ready</p>
-                  </td>
-                </tr>
-                <tr className={`${styles.Cooking}`}>
-                  <td>
-                    <p>02</p>
-                  </td>
-                  <td>
-                    <p>Rahul Dutta</p>
-                  </td>
-                  <td>
-                    <p>Tikka Kebab</p>
-                    <p>Tangdi</p>
-                    <p>Chicken Afgani</p>
-                  </td>
-                  <td>
-                    <p>1</p>
-                    <p>6</p>
-                    <p>3</p>
-                  </td>
-                  <td>
-                    <p>
-                      <FormControlLabel
+                  {parseInt(item.status) === 0 && <p><FormControlLabel
                         control={
                           <Checkbox
-                            checked={state.status}
-                            onChange={handleChange}
-                            name="status"
+                            onChange={(e)=>this.changeCookingStatus(e,item.id)}
+                            name={'chk'+index}
                             color="primary"
                           />
                         }
-                      />
-                      Cooking
-                    </p>
+                      />Cooking</p>}
+                  {parseInt(item.status) === 1 && <p>Ready</p>}
+                  {parseInt(item.status) === 2 && <p>Delivered</p>}
                   </td>
-                </tr>
-                <tr className={`${styles.Delivered}`}>
-                  <td>
-                    <p>03</p>
-                  </td>
-                  <td>
-                    <p>Sribas Das</p>
-                  </td>
-                  <td>
-                    <p>Chicken Hariyali Kebab</p>
-                    <p>BBQ</p>
-                    <p>Tandoori Chicken</p>
-                    <p>Fish Tikka</p>
-                  </td>
-                  <td>
-                    <p>1</p>
-                    <p>6</p>
-                    <p>3</p>
-                    <p>2</p>
-                  </td>
-                  <td>
-                    <p>Delivered</p>
-                  </td>
-                      </tr>*/}
+                </tr>)
+                })}
               </table>
             </div>
 
           </div>
         </div>
 
+        {/*<Dialog open={open} onClose={() => onCancel()} aria-labelledby="confirm-dialog" >
+          <DialogTitle id="confirm-dialog">Are you sure?</DialogTitle>
+          <DialogContent>Are you sure?</DialogContent>
+          <DialogActions>
+            <Button variant="contained" onClick={() => onCancel()} or="secondary" >No</Button>
+            <Button variant="contained" onClick={() => { onConfirm(); }} color="default" >Yes</Button>
+          </DialogActions>
+          </Dialog>*/}
+
     </div>
-  )
+    )
+  }
 }
 
 export default withAuth(LiveOrder);

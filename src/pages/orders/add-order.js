@@ -24,6 +24,7 @@ function AddOrder() {
   const [menuList,setMenuList] = useState({'data':[],'loading':false});
   const [subTotalAmount,setSubTotalAmount] = useState(0);
   const [discountAmount,setDiscountAmount] = useState(0);
+  const [radioDisabled,setRadioDisabled] = useState(true);
 
   useEffect(() => {
     
@@ -203,7 +204,7 @@ function AddOrder() {
                 control={
                   <Checkbox
                   onBlur={onBlur}
-                  onChange={onChange}
+                  onChange={(e)=>{onChange(e); setRadioDisabled(!(e.target.checked));}}
                   checked={value}
                   inputRef={ref}
                   />
@@ -217,8 +218,8 @@ function AddOrder() {
               <Controller
                 render={({ field })=>
                   (<RadioGroup {...field} className="CheckboxGroup">
-                    <FormControlLabel value="cash" control={<Radio />} label="Cash" />
-                    <FormControlLabel value="online" control={<Radio />} label="Online" />
+                    <FormControlLabel value="cash" control={<Radio />} disabled={radioDisabled} label="Cash" />
+                    <FormControlLabel value="online" control={<Radio />} disabled={radioDisabled} label="Online" />
                   </RadioGroup>)
                 }
                 name="payment_type"

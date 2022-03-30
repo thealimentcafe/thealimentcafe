@@ -1,6 +1,5 @@
-import  { useEffect } from "react";
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, useHistory,useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./pages/login";
 import Home from "./pages/home";
 import Dashboard from "./pages/dashboard";
@@ -17,6 +16,7 @@ import StockAdd from "./pages/stocks/add-item";
 import StockUpdate from "./pages/stocks/stock-update";
 import MenuList from "./pages/menus/list";
 import MenuAdd from "./pages/menus/add";
+import Sales from "./pages/sales/index";
 
 
 function App() {
@@ -71,6 +71,9 @@ function App() {
         </Route>
         <Route path="/menus/add">
           <MenuAdd />
+        </Route>
+        <Route path="/sales">
+          <Sales />
         </Route>
       </Switch>
     </Router>

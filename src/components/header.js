@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <div className="Header">
-        <img src="/img/logo.svg" className="HeaderLogo" />
+        <img src="/img/logo.svg" alt={'Logo'} className="HeaderLogo" />
         <Link onClick={logout} className="LogoutBU"><Power/> Logout</Link>
     </div>
   )

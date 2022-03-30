@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import styles from './list.module.css';
 import { FormControlLabel, Checkbox } from '@material-ui/core';
 import { ArrowLeft, Plus } from 'react-feather';
@@ -8,69 +8,130 @@ import withAuth from "../../components/withAuth";
 import { Link } from "react-router-dom";
 
 
-class Order extends React.Component {
-  state = {
-    itemList: [],
-    orderList:[]
-  }
+function Order() {
+  const [itemList,setItemList] = useState({'data':[],'loading':false});
+  const [orderList,setOrderList] = useState({'data':[],'loading':false});
 
-  componentDidMount() {
-    this.fetchItems();
-    this.fetchOrders();
-    this.interval1 = setInterval(() => this.fetchItems(), 5000);
-    this.interval2 = setInterval(() => this.fetchOrders(), 5000);
-  }
-  componentWillUnmount() {
-    clearInterval(this.interval1);
-    clearInterval(this.interval2);
-  }
+  useEffect(() => {
+    
+    function fetchItems(){
+      let ilist = itemList;
+      ilist = {...ilist,'loading':true};
+      setItemList(ilist);
+      axios.get(process.env.REACT_APP_APIURL+'v1/items')
+      .then(res => {
+        let ilist = {'data':res.data.data,'loading':true};
+        setItemList(ilist);
 
-  fetchItems(){
+        setTimeout(()=>{
+          fetchItemsNew();
+        },5000);
+
+      }).catch(err =>{
+        let ilist = itemList;
+        ilist = {...ilist,'loading':false};
+        setItemList(ilist);
+      });
+    }
+
+    if(!itemList.loading){
+      fetchItems();
+    }
+
+  });
+
+  useEffect(() => {
+    
+    function fetchOrders(){
+      let olist = orderList;
+      olist = {...olist,'loading':true};
+      setOrderList(olist);
+      axios.get(process.env.REACT_APP_APIURL+'v1/take-orders')
+      .then(res => {
+        let olist = {'data':res.data.data,'loading':true};
+        setOrderList(olist);
+
+        setTimeout(()=>{
+          fetchOrdersNew();
+        },5000);
+
+      }).catch(err =>{
+        let olist = orderList;
+        olist = {...olist,'loading':false};
+        setOrderList(olist);
+      });
+    }
+
+    if(!orderList.loading){
+      fetchOrders();
+    }
+
+  });
+
+  const fetchItemsNew = () =>{
     axios.get(process.env.REACT_APP_APIURL+'v1/items')
     .then(res => {
-      this.setState({...this.state,itemList:res.data.data});
-    });
+      let ilist = {'data':res.data.data,'loading':true};
+      setItemList(ilist);
+
+      setTimeout(()=>{
+        fetchItemsNew();
+      },5000);
+
+  }).catch(err =>{
+
+      setTimeout(()=>{
+        fetchItemsNew();
+      },5000);
+
+  });
   }
 
-  fetchOrders(){
-    axios.get(process.env.REACT_APP_APIURL+'v1/take-orders')
-    .then(res => {
-      this.setState({...this.state,orderList:res.data.data});
-    });
+  const fetchOrdersNew = () =>{
+      axios.get(process.env.REACT_APP_APIURL+'v1/take-orders')
+      .then(res => {
+        let olist = {'data':res.data.data,'loading':true};
+        setOrderList(olist);
+
+        setTimeout(()=>{
+          fetchOrdersNew();
+        },5000);
+
+      }).catch(err =>{
+
+        setTimeout(()=>{
+          fetchOrdersNew();
+        },5000);
+
+      });
   }
 
-  setPayment = (event,itemId)=>{
+  const setPayment = (event,itemId)=>{
     let is_paid = 0;
     if(event.target.checked){
       is_paid = 1;
     }
     axios.put(process.env.REACT_APP_APIURL+'v1/orders/'+itemId,{is_paid:is_paid})
     .then(res => {
-      clearInterval(this.interval2);
-      this.fetchOrders();
-      this.interval2 = setInterval(() => this.fetchOrders(), 5000);
+      console.log(res);
     }).catch(err =>{
       console.log(err);
     });
   }
 
-  setDelivered = (event,itemId)=>{
+  const setDelivered = (event,itemId)=>{
     let status = 1;
     if(event.target.checked){
       status = 2;
     }
     axios.put(process.env.REACT_APP_APIURL+'v1/orders/'+itemId,{status:status})
     .then(res => {
-      clearInterval(this.interval2);
-      this.fetchOrders();
-      this.interval2 = setInterval(() => this.fetchOrders(), 5000);
+      console.log(res);
     }).catch(err =>{
       console.log(err);
     });
   }
 
-  
-  render() {
   return (
     <div>
 
@@ -91,7 +152,7 @@ class Order extends React.Component {
             </div>
 
             <div className={`${styles.StockUpdateRow}`}>
-              {this.state.itemList.map((item,index)=>{
+              {itemList.data.map((item,index)=>{
                 return (<div key={index} className={`${styles.Stock}`}>
                 <p className={`${styles.StockName}`}>{item.item_name}</p>
                 <p className={`${styles.StockUnit}`}>{item.live_stock}</p>
@@ -114,8 +175,8 @@ class Order extends React.Component {
                   <th>Status</th>
                 </tr>
                 
-                {this.state.orderList.map((item,index)=>{
-                  return (<tr key={index} className={(parseInt(item.status) === 2)?`${styles.Delivered}`:((parseInt(item.status) === 1)?`${styles.Ready}`:`${styles.Cooking}`)}>
+                {orderList.data.map((item,index)=>{
+                  return (<tr key={index} className={(parseInt(item.status) === 2)?`${styles.Delivered}`:((item.status === 1)?`${styles.Ready}`:`${styles.Cooking}`)}>
                   <td>
                     <p>{index+1}</p>
                   </td>
@@ -149,7 +210,7 @@ class Order extends React.Component {
                       <FormControlLabel
                         control={
                           <Checkbox
-                            onChange={(e)=>this.setPayment(e,item.id)}
+                            onChange={(e)=>setPayment(e,item.id)}
                             name="payment"
                             color="primary"
                           />
@@ -163,7 +224,7 @@ class Order extends React.Component {
                   {(parseInt(item.status) === 1 && parseInt(item.is_paid) === 1) && <p><FormControlLabel
                         control={
                           <Checkbox
-                            onChange={(e)=>this.setDelivered(e,item.id)}
+                            onChange={(e)=>setDelivered(e,item.id)}
                             name="payment"
                             color="primary"
                           />
@@ -182,7 +243,7 @@ class Order extends React.Component {
         </div>
 
     </div>
-  )}
+  )
 }
 
 export default withAuth(Order);

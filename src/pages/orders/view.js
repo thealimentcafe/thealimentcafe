@@ -5,33 +5,41 @@ import axios from 'axios';
 import Header from "../../components/header";
 import withAuth from "../../components/withAuth";
 import { Link } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment';
 
 
 function ViewOrders() {
   const [orderList,setOrderList] = useState({'data':[],'loading':false});
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   useEffect(() => {
-    
-    function fetchOrders(){
-      let olist = orderList;
-      olist = {...olist,'loading':true};
-      setOrderList(olist);
-      axios.get(process.env.REACT_APP_APIURL+'v1/orders')
-      .then(res => {
-        let olist = {'data':res.data.data,'loading':true};
-        setOrderList(olist);
-      }).catch(err =>{
-        let olist = orderList;
-        olist = {...olist,'loading':false};
-        setOrderList(olist);
-      });
-    }
-
     if(!orderList.loading){
-      fetchOrders();
+      fetchOrders(selectedDate);
     }
-
   });
+
+  const fetchOrders = (seldDate) =>{
+    let cDate = moment(seldDate).format('YYYY-MM-DD');
+    let olist = orderList;
+    olist = {...olist,'loading':true};
+    setOrderList(olist);
+    axios.get(process.env.REACT_APP_APIURL+'v1/orders/'+cDate)
+    .then(res => {
+      let olist = {'data':res.data.data,'loading':true};
+      setOrderList(olist);
+    }).catch(err =>{
+      let olist = orderList;
+      olist = {...olist,'loading':false};
+      setOrderList(olist);
+    });
+  }
+
+  const changeDate = (date) =>{
+    setSelectedDate(date);
+    fetchOrders(date);
+  }
 
   return (
     <div>
@@ -44,6 +52,7 @@ function ViewOrders() {
             <div className={`${styles.BodyHeadArea}`}>
               <Link to="/dashboard" className={`${styles.BackBU}`}><ArrowLeft/></Link>
               <p className={`${styles.ViewUserTitle}`}>View Order</p>
+              <DatePicker selected={selectedDate} onChange={changeDate} />
             </div>
 
             <div className={`${styles.TableContainer}`}>
@@ -60,7 +69,7 @@ function ViewOrders() {
                   <th>Status</th>
                 </tr>
                 {orderList.data.map((item,index)=>{
-                  return (<tr key={index} className={(item.status === 2)?`${styles.Delivered}`:((item.status === 1)?`${styles.Cooking}`:`${styles.Ready}`)}>
+                  return (<tr key={index} className={(item.status === 2)?`${styles.Delivered}`:((item.status === 1)?`${styles.Ready}`:`${styles.Cooking}`)}>
                   <td>
                     <p>{index+1}</p>
                   </td>
@@ -89,8 +98,8 @@ function ViewOrders() {
                     <p>{item.totalamount}</p>
                   </td>
                   <td>
-                  {item.status === 0 && <p>Ready</p>}
-                  {item.status === 1 && <p>Cooking</p>}
+                  {item.status === 0 && <p>Cooking</p>}
+                  {item.status === 1 && <p>Ready</p>}
                   {item.status === 2 && <p>Delivered</p>}
                   </td>
                 </tr>)
