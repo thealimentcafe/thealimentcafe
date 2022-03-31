@@ -124,3 +124,25 @@
     right: 12px;
     z-index: -1;
 }
+
+.NoDataFound {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.NoDataFound svg {
+    width: 50px;
+    height: auto;
+    stroke-width: 1;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.NoDataFound p {
+    color: #888888;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: center;
+    margin: 0;
+    white-space: nowrap;
+}

@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import styles from './view.module.css';
-import { ArrowLeft, Calendar } from 'react-feather';
+import { ArrowLeft, Calendar, AlertTriangle } from 'react-feather';
 import axios from 'axios';
 import Header from "../../components/header";
 import withAuth from "../../components/withAuth";
@@ -110,6 +110,14 @@ function ViewOrders() {
                   </td>
                 </tr>)
                 })}
+                <tr>
+                  <td colSpan={8}>
+                    <div className={`${styles.NoDataFound}`}>
+                      <AlertTriangle />
+                      <p>No data Found</p>
+                    </div>
+                  </td>
+                </tr>
                 </tbody>
               </table>
             </div>
