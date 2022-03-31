@@ -1,5 +1,7 @@
 .BodyHeadArea {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     margin: 0 0 25px 0;
 }
@@ -108,4 +110,17 @@
 
 .Delivered td:last-child p {
     color: rgba(9, 154, 11, 1);
+}
+
+.ReactDatePicker {
+    position: relative;
+}
+
+.ReactDatePicker svg {
+    position: absolute;
+    width: 18px;
+    color: #c9c9c9;
+    top: 6px;
+    right: 12px;
+    z-index: -1;
 }
